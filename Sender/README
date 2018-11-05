@@ -6,48 +6,15 @@
 
 	=========================================================================
 
-	This program uses the GPL license. see the file
-	COPYING for details. a very important passage will be pasted here, too.:
-
-		                    NO WARRANTY
-
-	  11. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
-	FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
-	OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-	PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
-	OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-	MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS
-	TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE
-	PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,
-	REPAIR OR CORRECTION.
-
-	  12. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-	WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-	REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,
-	INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING
-	OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED
-	TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY
-	YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
-	PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGES.
-
-	 
-	this means if you get an electric shock from an old radio or
-	crash your aircraft because of radio signals, it is YOUR problem!
-
-
-	ok. now to the more interesting but less important topics:
-
 	What is it ?
 	------------
 
-	Tempest for Eliza is a Program that uses your computer monitor
-	to send out AM radio signals. You can then hear computer 
-	generated music in your radio.
+	Tempest for leishen is a Program that uses your computer monitor
+	to send out FM radio signals. You can then hear computer 
+	transform file content in your radio.
 
-	this document first describes tempest for eliza, the old program that
-	plays music like your cellphone does when you get a phonecall. then it
-	describes tempest for mp3 which you can use to play mp3 files :-)
+	this document first describes tempest for leishen, the old program that
+	transfer files like your cellphone does when you get a phonecall.
 
 	How does this work ?
 	--------------------
@@ -58,8 +25,8 @@
 	AM radio.
 	all you have to do is display the "correct" image on your screen
 	and your monitor will emit the "right" signals.
-	Tempest for Eliza displays pictures on your screen. one for
-	each note in the song.
+	Tempest for leishen displays pictures on your screen. one for
+	each note in the file.
 
 	[Note: Markus G. Kuhn's and Ross J. Anderson's paper; "Soft Tempest:
 	Hidden Data Transmission Using Electromagnetic Emanations" was used as a
@@ -145,27 +112,19 @@
 
 	now start
 
-	./tempest_for_eliza  94500000   1024     768      1376   10000000  songs/forelise
-		             pixelclock Hdisplay VDisplay HTotal radio     music
-		             *1000000                            frequency file
-
-	./tempest_for_eliza 146250000   1680     1050     2240   20000000  songs/forelise
+	./tempest_for_leishen 146250000  1680     1050     2240   100000000  files/test.txt
+		              pixelclock Hdisplay VDisplay HTotal radio      trans
+		              *1000000                            frequency  file
 
 	the program runs in fullscreen.
 
 	now SLOWLY move a little left and right on your radio
-	to find the 10 Megahertz. You will hear
-	a Song for Eliza from Ludwig van Beethoven
+	to find the 100 Megahertz FM. You will hear
+	a didadi voice. 
 
-	the song will be on the radio at multiple frequencies.
-	but the best transmission is at the frequency you gave on
-	the commandline.
-
-	if your computer makes too much noise on that frequency
-	you could also try some other radio frequencies.
-	it is up to you.
-
-	now go and try other songs included in the songs/ subdir !!
+        Record the voice to 8K 8bit wave file, and then use 
+	python file in Receiver folder to analysis this wave file.
+	You will find the file content displays
 
 	Let's be a spy
 	--------------
@@ -175,61 +134,7 @@
 	touch earth connections or other things. just play around.
 	depending on the distance and the quality of your monitor
 	you will hear good voice.
-	i have a TCO'99 monitor and i can still hear GOOD music !
-
-	Tempest for MP3
-	---------------
-
-	get your favourite mp3 file to the current directory. let's call it
-	'foobar.mp3'. make sure you have "amp" and "sox" installed. you must
-	use X11 with 8 bits colordepth. use the old -bpp 8 option to your
-	xserver or the new -fbbpp 8 option if you have a newer Xserver.
-
-	first we need to find out what the correct sampling rate will
-	be. therefore start:
-
-	./tempest_for_mp3 115500000 1024 768 1350 810 1500000 0 20  notexist.raw
-		          pixel-clock    resy     vtotal      playmode
-		                    resx     htotal   radio-frequency
-		                                                amplification
-		                                                    filename
-	./tempest_for_mp3 146250000 1680 1050 2240 1089 20000000 0 20  notexist.raw
-
-	note that the vtotal parameter is a new one and must be read from the
-	xvidtune screen!
-
-	also note that the notexist.raw file does not exist. we just want to
-	see the output of the program, play no music yet.
-
-	it will display:
-
-	"audio file frequency should be 13519.890261 Hz"
-
-	now take this value and convert your mp3 like this:
-
-	./mksong.sh 13519 foobar.mp3 cool.raw
-
-	you can now listen to it with this command:
-
-	./tempest_for_mp3 115500000 1024 768 1350 810 1500000 0 20  cool.raw
-
-	notice the low radio frequency of only 1500 KHz. well... i found out
-	that you actually don't need a short wave radio if you put your
-	antenna close enough to your computer screen. lower frequencies also
-	work. and even nowadays most radios can receive AM waves :) so finally
-	you can send to any radio you have. (but no FM, sorry...)
-
-	the playmode and amplification parameters control the algorithm for
-	playback. you can choose between playmode 0 and playmode 1. playmode 1
-	produces a correct AM signal. amplification 1 is correct. if you
-	increase amplification the audio signal will be clipped. but since
-	there is so much disturbing noise anyway, this doesn't matter. you can
-	use playmode 0 to further increase output energy. the signal is not
-	very good anymore then :) but it is louder. the problem is i cannot
-	use the time when the electron beam does the blanking and retrace
-	phase. unfortunately there's no way around this, folks. if your song
-	has heavy basses, you shouldn't over-amplify, because you won't hear
-	the melody while the bass is drumming then...
+	i have a HP LE2201w monitor and i can still hear GOOD voice !
 
 	Credits
 	-------
@@ -238,3 +143,4 @@
 	he wrote the program
 	tempest-AM-0.9. i used a simplification of his routines
 	to create the signal.
+	The final Tempest for leishen is build by YaojieNo1.
