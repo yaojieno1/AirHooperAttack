@@ -1,0 +1,14 @@
+AC_INIT(player.cpp)
+AM_INIT_AUTOMAKE(tempest_for_eliza,1.0.5)
+
+AC_YYY_CC_CXX_BEGIN
+AC_YYY_CXX_INIT
+AC_YYY_CC_CXX_END
+
+AM_PATH_SDL(1.0.0,
+            :,
+            AC_MSG_ERROR([*** SDL version $SDL_VERSION not found!])
+)
+
+AC_OUTPUT(Makefile
+	songs/Makefile)

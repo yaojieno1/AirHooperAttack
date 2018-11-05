@@ -1,0 +1,20 @@
+2018-11-05  tempest_for_leishen
+	* add leishen.cpp for FM boarding
+
+2001-12-01  tempest_for_eliza-1.0.5
+	* added mp3 playback :-)
+
+2001-08-14  tempest_for_eliza-1.0.4
+	* added include <string.h>
+
+2001-08-14  tempest_for_eliza-1.0.3
+	* program now runs fullscreen.
+
+2001-03-28  tempest_for_eliza-1.0.2
+	* added a new song
+
+2001-02-17  tempest_for_eliza-1.0.1
+	* switched to SDL because most people don't have ggi.
+
+1999-08-24  tempest_for_eliza-1.0.0
+	* initial release
