@@ -1,5 +1,5 @@
-AC_INIT(player.cpp)
-AM_INIT_AUTOMAKE(tempest_for_eliza,1.0.5)
+AC_INIT(leishen.cpp)
+AM_INIT_AUTOMAKE(tempest_for_leishen,1.0.7)
 
 AC_YYY_CC_CXX_BEGIN
 AC_YYY_CXX_INIT

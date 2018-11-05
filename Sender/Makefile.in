@@ -72,15 +72,12 @@ EXTRA_DIST = mksong.sh
 
 INCLUDES = @SDL_CFLAGS@
 
-bin_PROGRAMS = tempest_for_eliza tempest_for_mp3
+bin_PROGRAMS = tempest_for_leishen
 
-tempest_for_eliza_SOURCES = player.cpp
+tempest_for_leishen_SOURCES = leishen.cpp
 
-tempest_for_eliza_LDADD = @SDL_LIBS@
+tempest_for_leishen_LDADD = @SDL_LIBS@
 
-tempest_for_mp3_SOURCES = mp3player.cpp
-
-tempest_for_mp3_LDADD = @SDL_LIBS@
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES = 
@@ -91,12 +88,9 @@ DEFS = @DEFS@ -I. -I$(srcdir)
 CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
-tempest_for_eliza_OBJECTS =  player.o
-tempest_for_eliza_DEPENDENCIES = 
-tempest_for_eliza_LDFLAGS = 
-tempest_for_mp3_OBJECTS =  mp3player.o
-tempest_for_mp3_DEPENDENCIES = 
-tempest_for_mp3_LDFLAGS = 
+tempest_for_leishen_OBJECTS =  leishen.o
+tempest_for_leishen_DEPENDENCIES = 
+tempest_for_leishen_LDFLAGS = 
 CXXFLAGS = @CXXFLAGS@
 CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 CXXLD = $(CXX)
@@ -110,8 +104,8 @@ DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 
 TAR = tar
 GZIP_ENV = --best
-SOURCES = $(tempest_for_eliza_SOURCES) $(tempest_for_mp3_SOURCES)
-OBJECTS = $(tempest_for_eliza_OBJECTS) $(tempest_for_mp3_OBJECTS)
+SOURCES = $(tempest_for_leishen_SOURCES) 
+OBJECTS = $(tempest_for_leishen_OBJECTS)
 
 all: all-redirect
 .SUFFIXES:
@@ -175,13 +169,10 @@ distclean-compile:
 
 maintainer-clean-compile:
 
-tempest_for_eliza: $(tempest_for_eliza_OBJECTS) $(tempest_for_eliza_DEPENDENCIES)
-	@rm -f tempest_for_eliza
-	$(CXXLINK) $(tempest_for_eliza_LDFLAGS) $(tempest_for_eliza_OBJECTS) $(tempest_for_eliza_LDADD) $(LIBS)
+tempest_for_leishen: $(tempest_for_leishen_OBJECTS) $(tempest_for_leishen_DEPENDENCIES)
+	@rm -f tempest_for_leishen
+	$(CXXLINK) $(tempest_for_leishen_LDFLAGS) $(tempest_for_leishen_OBJECTS) $(tempest_for_leishen_LDADD) $(LIBS)
 
-tempest_for_mp3: $(tempest_for_mp3_OBJECTS) $(tempest_for_mp3_DEPENDENCIES)
-	@rm -f tempest_for_mp3
-	$(CXXLINK) $(tempest_for_mp3_LDFLAGS) $(tempest_for_mp3_OBJECTS) $(tempest_for_mp3_LDADD) $(LIBS)
 .cpp.o:
 	$(CXXCOMPILE) -c $<
 
