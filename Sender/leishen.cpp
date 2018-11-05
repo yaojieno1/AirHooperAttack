@@ -207,113 +207,11 @@ void mkrealsound(int nr) {
   }
 }
 
-/*
-DTMF keypad frequencies (with sound clips) 	
-        1209 Hz 	1336 Hz 	1477 Hz 	1633 Hz
-697 Hz 	  1       	2       	3         A
-770 Hz 	  4        	5         6         B
-852 Hz   	7        	8       	9         C
-941 Hz  	*       	0         #         D
-*/
-
-
-struct DTMF note(int nr)
-{
-  struct DTMF dtmf = {0.0f, 0.0f};
-  switch (nr) {
-    case 0:
-      dtmf.low  = 697.0f;
-      dtmf.high = 1209.0f;
-      break;
-    case 1:
-      dtmf.low = 697.0f;
-      dtmf.high = 1336.0f;
-      break;
-    case 2:
-      dtmf.low = 697.0f;
-      dtmf.high = 1477.0f;
-      break;
-    case 3:
-      dtmf.low = 697.0f;
-      dtmf.high = 1633.0f;
-      break;
-    case 4:
-      dtmf.low = 770.0f;
-      dtmf.high = 1209.0f;
-      break;
-    case 5:
-      dtmf.low = 770.0f;
-      dtmf.high = 1336.0f;
-      break;
-    case 6:
-      dtmf.low = 770.0f;
-      dtmf.high = 1477.0f;
-      break;
-    case 7:
-      dtmf.low = 770.0f;
-      dtmf.high = 1633.0f;
-      break;
-    case 8:
-      dtmf.low = 852.0f;
-      dtmf.high = 1209.0f;
-      break;
-    case 9:
-      dtmf.low = 852.0f;
-      dtmf.high = 1336.0f;
-      break;
-    case 10:
-      dtmf.low = 852.0f;
-      dtmf.high = 1477.0f;
-      break;
-    case 11:
-      dtmf.low = 852.0f;
-      dtmf.high = 1633.0f;
-      break;
-    case 12:
-      dtmf.low = 941.0f;
-      dtmf.high = 1209.0f;
-      break;
-    case 13:
-      dtmf.low = 941.0f;
-      dtmf.high = 1336.0f;
-      break;
-    case 14:
-      dtmf.low = 941.0f;
-      dtmf.high = 1477.0f;
-      break;
-    case 15:
-      dtmf.low = 941.0f;
-      dtmf.high = 1633.0f;
-      break;
-    default:
-      printf("NOTE(): unknown nr %d!!!", nr);
-      dtmf.low = 941.0f;
-      dtmf.high = 1633.0f;
-      break;
-  }
-  return dtmf;
-}
-
-/*
-double note (int nr)
-{
-  double n = pow(2.0,nr/12.0)*440.0*2;
-  printf("note(): nr=%d, n=%f\n", nr, n);
-  return n;
-};
-*/
-
-//int curoct, curnot;
 double curlen=10.0f;
-//bool loaded;
 zeit timefornextsound;
 
 void resetplay()
 {
-  //curoct=0;
-  //curnot=0;
-  //curlen=80.0f;
-  //loaded=false;
   timefornextsound.setzero();
 };
 
@@ -451,10 +349,6 @@ int main(int argc, char *argv[])
       read_prefix();
       read (book);
     }
-//    if (ret) {
-//      read_prefix();
-//      read (book);
-//    }
   } while(ret);
   finishplay();
   fclose(input);
